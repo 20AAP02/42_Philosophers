@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string.c                                        :+:      :+:    :+:   */
+/*   ft_array.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 16:32:24 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/29 11:50:21 by amaria-m         ###   ########.fr       */
+/*   Created: 2022/06/30 19:54:04 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/06/30 20:19:08 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_string.h>
-#include <ft_str_util.h>
+#include <ft_array.h>
+#include <ft_arr_util.h>
 
-t_string	string(void)
+t_array	array(void)
 {
-	static t_string	string = {
-		ft_len, ft_copy, ft_copy_n, ft_strnstr, ft_contains,
-        ft_compare, ft_compare_n, ft_is_space, ft_join,
-        ft_replace, ft_split, ft_atoi, ft_trim, ft_substr,
-        ft_iter
-    };
+	static t_array	array_of_strings = {
+		ft_arrlen, ft_free_arr, ft_create_arr,
+		ft_add_arr, ft_rmv_arr, ft_copy_arr, ft_copy_n_arr,
+		ft_arr_iter, ft_arr_set
+	};
 
-	return (string);
+	return (array_of_strings);
 }

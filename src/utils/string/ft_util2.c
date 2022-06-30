@@ -5,60 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 16:32:43 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/27 19:24:07 by amaria-m         ###   ########.fr       */
+/*   Created: 2022/06/30 19:55:20 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/06/30 20:28:16 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_str_util.h>
 
-static int  ___split_util(const char **str, char *div)
+static int	___split_util(const char **str, char *div)
 {
-    int     j;
-    int     i;
+	int	j;
+	int	i;
 
-    while (ft_contains(*str, div) == 1)
-        *str += ft_len(div);
-    if (!*str || !div || !**str || !*div)
+	while (ft_contains(*str, div) == 1)
+		*str += ft_len(div);
+	if (!*str || !div || !**str || !*div)
 		return (0);
-    i = 1;
-    j = 0;
-    while ((*str)[j] && i++)
-    {
-        while ((*str)[j] && ft_contains((*str) + j, div) != 1)
-            j++;
-        while ((*str)[j] && ft_contains((*str) + j, div) == 1)
-            j += ft_len(div);
-    }
-    return (i);
+	i = 1;
+	j = 0;
+	while ((*str)[j] && i++)
+	{
+		while ((*str)[j] && ft_contains((*str) + j, div) != 1)
+			j++;
+		while ((*str)[j] && ft_contains((*str) + j, div) == 1)
+			j += ft_len(div);
+	}
+	return (i);
 }
 
-char    **ft_split(const char *str, char *div)
+char	**ft_split(const char *str, char *div)
 {
-    char    **arr;
-    int     j;
-    int     i;
-    char    buf[60000];
+	char	**arr;
+	int		j;
+	int		i;
+	char	buf[60000];
 
-    i = ___split_util(&str, div);
-    if (!i)
-        return (NULL);
-    arr = malloc(sizeof(char *) * i);
-    if (!arr)
-        return (NULL);
-    i = 0;
-    while (*str)
-    {
-        j = 0;
-        while (*str && ft_contains(str, div) != 1)
-            buf[j++] = *str++;
-        buf[j] = 0;
-        arr[i++] = ft_copy(buf);
-        while (*str && ft_contains(str, div) == 1)
-            str += ft_len(div);
-    }
-    arr[i] = NULL;
-    return (arr);
+	i = ___split_util(&str, div);
+	if (!i)
+		return (NULL);
+	arr = malloc(sizeof(char *) * i);
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (*str)
+	{
+		j = 0;
+		while (*str && ft_contains(str, div) != 1)
+			buf[j++] = *str++;
+		buf[j] = 0;
+		arr[i++] = ft_copy(buf);
+		while (*str && ft_contains(str, div) == 1)
+			str += ft_len(div);
+	}
+	arr[i] = NULL;
+	return (arr);
 }
 
 int	ft_atoi(const char *str)
@@ -87,7 +87,7 @@ int	ft_atoi(const char *str)
 
 char	*ft_trim(const char *str)
 {
-	int		size;
+	int	size;
 
 	if (!str)
 		return (NULL);

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array.c                                         :+:      :+:    :+:   */
+/*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 19:15:35 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/29 11:50:10 by amaria-m         ###   ########.fr       */
+/*   Created: 2022/06/30 19:54:29 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/06/30 20:21:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_array.h>
-#include <ft_arr_util.h>
+#include <ft_list.h>
+#include <ft_lst_util.h>
 
-t_array array(void)
+t_list_utils	list(void)
 {
-    static t_array array_of_strings = {
-        ft_arrlen, ft_free_arr, ft_create_arr,
-        ft_add_arr, ft_rmv_arr, ft_copy_arr, ft_copy_n_arr,
-        ft_arr_iter, ft_arr_set
-    };
-    return (array_of_strings);
+	static t_list_utils	linked_list = {
+		ft_lst_len, ft_lst_get, ft_new_lst, ft_lst_add,
+		ft_lst_free, ft_lst_iter, ft_lst_set, ft_lst_rmv,
+		ft_lst_swap
+	};
+
+	return (linked_list);
 }

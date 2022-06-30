@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/26 17:09:05 by amaria-m          #+#    #+#              #
-#    Updated: 2022/06/29 16:09:11 by amaria-m         ###   ########.fr        #
+#    Created: 2022/06/30 19:55:47 by amaria-m          #+#    #+#              #
+#    Updated: 2022/06/30 20:29:59 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	philo
 
-INCLUDES	= 	./HDR
+INCLUDES	= 	./hdr
 
-SRCS		= 	$(shell find SRC/ -name '*.c')
+SRCS		= 	$(shell find src/ -name '*.c')
 OBJS		= 	$(SRCS:.c=.o)
 
 .c.o:
