@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:53:34 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/30 20:15:59 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:31:20 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int		ft_atoi(const char *str);
 char	*ft_trim(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_iter(const char *str, char (*f)(char c));
+int		ft_is_number(const char *str);
 
 #endif

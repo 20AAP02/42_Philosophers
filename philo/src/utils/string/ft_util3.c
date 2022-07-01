@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:55:36 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/30 20:28:27 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:46:25 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ char	*ft_iter(const char *str, char (*f)(char c))
 	}
 	mem[i] = 0;
 	return (mem);
+}
+
+int	ft_is_number(const char *str)
+{
+	if (!str || !*str)
+		return (0);
+	while (str && *str)
+	{
+		if (*str > '9' || *str < '0')
+			return (0);
+		str++;
+	}
+	return (1);
 }

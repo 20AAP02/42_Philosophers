@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string.c                                        :+:      :+:    :+:   */
+/*   ft_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 19:54:54 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/06/30 20:25:26 by amaria-m         ###   ########.fr       */
+/*   Created: 2022/07/01 18:42:58 by amaria-m          #+#    #+#             */
+/*   Updated: 2022/07/01 19:45:23 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_string.h>
-#include <ft_str_util.h>
+#include <ft_philo.h>
 
-t_string	string(void)
+int	ft_get_args(int argc, char **argv, int *args)
 {
-	static t_string	string = {
-		ft_len, ft_copy, ft_copy_n, ft_strnstr, ft_contains,
-		ft_compare, ft_compare_n, ft_is_space, ft_join,
-		ft_replace, ft_split, ft_atoi, ft_trim, ft_substr,
-		ft_iter
-	};
+	int	i;
 
-	return (string);
+	if (!argv || (argc != 5 && argc != 6))
+		return (1);
+	i = 0;
+	while (++i < argc)
+	{
+		if (!argv[i])
+			return (1);
+		if (!string().is_num(argv[i]))
+			return (1);
+		if (string().atoi(argv[i]) <= 0)
+			return (1);
+		args[i - 1] = string().atoi(argv[i]);
+	}
+	if (argc == 5)
+		args[4] = -1;
+	return (0);
 }
