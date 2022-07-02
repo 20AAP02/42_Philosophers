@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:45:51 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/01 20:26:42 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/02 19:07:05 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,29 @@
 typedef struct s_info
 {
 	int				args[5];
+	suseconds_t		start_t;
+	int				dead;
 	t_list			*mem;
 	pthread_t		*philos;
 	pthread_mutex_t	*forks;
-	struct timeval	*time;
+	pthread_mutex_t	*print;
 }					t_info;
 
 typedef struct s_philo
 {
-	struct timeval	time;
-	int				number;
-	int				n_philos;
-	int				die_t;
-	int				eat_t;
-	int				sleep_t;
-	int				opt;
+	int				id;
+	int				*args;
+	t_list			*mem;
+	suseconds_t		start_t;
+	suseconds_t		end_t;
+	int				*dead;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	*print;
 }					t_philo;
+
+// MAIN
+void			*ft_routine(void *ptr);
+int				ft_print(t_philo philo, char *msg);
 
 // MEM
 void			*ft_malloc(size_t size, t_list *lst);
@@ -48,9 +55,12 @@ void			*ft_malloc(size_t size, t_list *lst);
 // ARGS
 int				ft_get_args(int argc, char **argv, int *args);
 
-// THREADS & MUTEXES
-pthread_mutex_t	*ft_inisialise_mutexes(int n_forks, t_list *lst);
-void			ft_destroy_mutexes(pthread_mutex_t	*forks, int n_forks);
-int				ft_crt_threads(t_info *info, void *(*f)(void *), t_list *mem);
+// TIME
+suseconds_t		ft_get_time(void);
+void			ft_sleep(t_info *info, suseconds_t waitime);
+int				ft_verify_end(t_info *info, t_philo *philos);
 
+// THREADS && MUTEXES
+int				ft_create_mutexes(t_info *info);
+int				ft_create_threads(t_info *info);
 #endif
