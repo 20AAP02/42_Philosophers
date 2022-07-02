@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 18:02:31 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/02 19:09:15 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:57:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	ft_create_threads(t_info *info)
 		if (pthread_join(info->philos[i], NULL) != 0)
 			return (1);
 	ft_destroy_mutexes(info);
+	list().free(info->mem);
 	return (0);
 }
 

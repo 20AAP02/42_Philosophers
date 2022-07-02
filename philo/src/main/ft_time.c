@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:20:25 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/02 19:15:12 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:59:42 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ suseconds_t	ft_get_time(void)
 	return (c_time.tv_usec);
 }
 
-void	ft_sleep(t_info *info, suseconds_t waitime)
+void	ft_sleep(t_philo *philo, suseconds_t waitime)
 {
 	suseconds_t	start;
 	suseconds_t	now;
 
 	start = ft_get_time();
-	while (!info->dead)
+	while (!*(philo->dead))
 	{
 		now = ft_get_time();
 		if (now - start >= waitime)
@@ -48,8 +48,40 @@ int	ft_verify_end(t_info *info, t_philo *philos)
 			{
 				ft_print(philos[i], "died");
 				info->dead = 1;
+				break ;
 			}
 		}
 	}
 	return (0);
+}
+
+int	ft_fork_index(t_philo *philo, int fork)
+{
+	if (!fork && philo->id % 2)
+		return (philo->id - 1);
+	if (!fork && philo->id == philo->args[0])
+		return (0);
+	if (!fork)
+		return (philo->id);
+	if (philo->id == philo->args[0])
+		return (philo->id - 1);
+	if (philo->id % 2)
+		return (philo->id);
+	return (philo->id - 1);
+}
+
+void	ft_eat(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->forks[ft_fork_index(philo, 0)]);
+	ft_print(*philo, "has taken a fork");
+	if (philo->args[0] != 1)
+	{
+		pthread_mutex_lock(&philo->forks[ft_fork_index(philo, 1)]);
+		ft_print(*philo, "has taken a fork");
+		ft_print(*philo, "is eating");
+		philo->end_t += philo->args[1];
+		ft_sleep(philo, (suseconds_t)philo->args[2]);
+		pthread_mutex_unlock(&philo->forks[ft_fork_index(philo, 1)]);
+	}
+	pthread_mutex_unlock(&philo->forks[ft_fork_index(philo, 0)]);
 }

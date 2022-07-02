@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:45:51 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/02 19:07:05 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:35:34 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ int				ft_get_args(int argc, char **argv, int *args);
 
 // TIME
 suseconds_t		ft_get_time(void);
-void			ft_sleep(t_info *info, suseconds_t waitime);
+void			ft_sleep(t_philo *philo, suseconds_t waitime);
 int				ft_verify_end(t_info *info, t_philo *philos);
+void			ft_eat(t_philo *philo);
 
 // THREADS && MUTEXES
 int				ft_create_mutexes(t_info *info);
