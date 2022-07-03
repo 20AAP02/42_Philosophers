@@ -6,7 +6,7 @@
 #    By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 19:55:47 by amaria-m          #+#    #+#              #
-#    Updated: 2022/07/02 20:53:53 by amaria-m         ###   ########.fr        #
+#    Updated: 2022/07/03 12:19:23 by amaria-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			= 	gcc -g -pthread
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	philo
-ARGS		=	3 300 150 150
+ARGS		=	2 300 150 150
 
 INCLUDES	= 	./hdr
 

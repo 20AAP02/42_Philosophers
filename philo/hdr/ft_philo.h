@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:45:51 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/02 20:35:34 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:14:45 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_info
 	pthread_t		*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
+	suseconds_t		time;
 }					t_info;
 
 typedef struct s_philo
@@ -43,6 +44,7 @@ typedef struct s_philo
 	int				*dead;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
+	suseconds_t		*time;
 }					t_philo;
 
 // MAIN

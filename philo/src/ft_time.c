@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:20:25 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/02 20:59:42 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:24:03 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_verify_end(t_info *info, t_philo *philos)
 		i = -1;
 		while (++i < info->args[0])
 		{
-			if (ft_get_time() >= philos[i].end_t)
+			if (info->time >= philos[i].end_t)
 			{
 				ft_print(philos[i], "died");
 				info->dead = 1;
@@ -80,6 +80,7 @@ void	ft_eat(t_philo *philo)
 		ft_print(*philo, "has taken a fork");
 		ft_print(*philo, "is eating");
 		philo->end_t += philo->args[1];
+		*(philo->time) += philo->args[2];
 		ft_sleep(philo, (suseconds_t)philo->args[2]);
 		pthread_mutex_unlock(&philo->forks[ft_fork_index(philo, 1)]);
 	}
