@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:45:20 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/05 16:53:26 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:44:38 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 void	*ft_routine(void *ptr)
 {
 	t_philo	*philo;
-	int		i;
 
 	philo = ptr;
-	i = 0;
 	while (!*(philo->destroy))
 	{
-		if (i > 0)
-			break ;
-		pthread_mutex_lock(philo->print);
-		if (!*(philo->destroy))
-			printf("%lli %i %s", (ft_get_time() - *(philo->start_t)), \
-			philo->id, "bla\n");
-		pthread_mutex_unlock(philo->print);
-		i++;
+		ft_eat(philo);
+		philo->eat_times++;
+		ft_print(philo, "is sleeping");
+		ft_sleep(philo, (long long)philo->sleep_t);
+		ft_print(philo, "is thinking");
 	}
 	return (NULL);
 }
@@ -37,7 +32,7 @@ void	ft_print(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(philo->print);
 	if (!*(philo->destroy))
-		printf("%lli %i %s", (ft_get_time() - *(philo->start_t)), \
+		printf("%lli %i %s\n", (ft_get_time() - *(philo->start_t)), \
 		philo->id, msg);
 	pthread_mutex_unlock(philo->print);
 }
@@ -66,6 +61,11 @@ void	ft_check_philos(t_info *info)
 				break ;
 			}
 		}
+		i = -1;
+		while (!info->destroy && info->eat_times != -1 && \
+		info->eat_times <= info->philos[++i].eat_times)
+			if (i == info->n - 1)
+				info->destroy = 1;
 	}
 }
 

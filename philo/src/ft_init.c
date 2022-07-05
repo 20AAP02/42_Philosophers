@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:31:36 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/05 16:38:16 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:42:12 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ void	ft_set_philos(t_info *info)
 		info->philos[i].die_t = info->die_t;
 		info->philos[i].eat_t = info->eat_t;
 		info->philos[i].sleep_t = info->sleep_t;
-		info->philos[i].eat_times = info->eat_times;
+		info->philos[i].eat_times = 0;
 		info->philos[i].forks = info->forks;
 		info->philos[i].print = &info->print;
 		info->philos[i].mem = info->mem;
 		info->philos[i].end_t = info->die_t;
 		info->philos[i].start_t = &info->start_t;
 		info->philos[i].destroy = &info->destroy;
+		info->philos[i].fork_checker = info->fork_checker;
+		info->philos[i].left = i;
+		info->philos[i].right = ((i + 1) != info->n) * (i + 1);
 	}
 }
 
@@ -76,6 +79,10 @@ int	ft_info_init(t_info *info, int *args)
 	info->destroy = 0;
 	info->forks = ft_malloc(sizeof(pthread_mutex_t) * info->n, info->mem);
 	info->threads = ft_malloc(sizeof(pthread_t) * info->n, info->mem);
+	info->fork_checker = ft_malloc(sizeof(int) * info->n, info->mem);
+	i = -1;
+	while (++i < info->n)
+		info->fork_checker[i] = 0;
 	i = -1;
 	while (++i < info->n)
 		if (pthread_mutex_init(&info->forks[i], NULL) != 0)
@@ -99,4 +106,3 @@ int	ft_mutex_destroy(t_info *info)
 		return (1);
 	return (0);
 }
-
