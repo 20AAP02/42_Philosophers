@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:45:20 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/05 18:44:38 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:11:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	*ft_routine(void *ptr)
 
 void	ft_print(t_philo *philo, char *msg)
 {
+	long long	now;
+
 	pthread_mutex_lock(philo->print);
-	if (!*(philo->destroy))
-		printf("%lli %i %s\n", (ft_get_time() - *(philo->start_t)), \
-		philo->id, msg);
+	now = (ft_get_time() - *(philo->start_t));
+	if (!*(philo->destroy) || string().cmp(msg, "died"))
+		printf("%lli %i %s\n", now, philo->id, msg);
 	pthread_mutex_unlock(philo->print);
 }
 
@@ -42,7 +44,7 @@ long long	ft_get_time(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec);
+	return (time.tv_usec);
 }
 
 void	ft_check_philos(t_info *info)
@@ -57,7 +59,7 @@ void	ft_check_philos(t_info *info)
 			if (info->philos[i].end_t <= (ft_get_time() - info->start_t))
 			{
 				info->destroy = 1;
-				printf("%lli %i %s\n", info->philos[i].end_t, i + 1, "died");
+				ft_print(&info->philos[i], "died");
 				break ;
 			}
 		}
