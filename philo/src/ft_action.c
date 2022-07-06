@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:11:41 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/05 19:23:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:51:58 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ void	ft_eat(t_philo *philo)
 			pthread_mutex_lock(&philo->forks[philo->left]);
 			if (!(philo->fork_checker[philo->right]))
 			{
-				philo->fork_checker[philo->right] = 1;
+				philo->fork_checker[philo->right] = ++i;
 				pthread_mutex_lock(&philo->forks[philo->right]);
-				ft_print(philo, "has a fork");
-				ft_print(philo, "has a fork");
-				ft_print(philo, "is eating");
-				philo->end_t += philo->die_t + philo->eat_t;
+				ft_print(philo, "has a fork 🍴");
+				ft_print(philo, "has a fork 🍴");
+				ft_print(philo, "is eating 🍝");
+				philo->end_t += philo->die_t;
 				ft_sleep(philo, (long long)philo->eat_t);
-				i++;
 				pthread_mutex_unlock(&philo->forks[philo->right]);
 				philo->fork_checker[philo->right] = 0;
 			}

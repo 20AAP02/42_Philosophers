@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:45:20 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/05 19:11:46 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:45:53 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	*ft_routine(void *ptr)
 	{
 		ft_eat(philo);
 		philo->eat_times++;
-		ft_print(philo, "is sleeping");
+		ft_print(philo, "is sleeping 😴");
 		ft_sleep(philo, (long long)philo->sleep_t);
-		ft_print(philo, "is thinking");
+		ft_print(philo, "is thinking 🧠");
 	}
 	return (NULL);
 }
@@ -34,8 +34,8 @@ void	ft_print(t_philo *philo, char *msg)
 
 	pthread_mutex_lock(philo->print);
 	now = (ft_get_time() - *(philo->start_t));
-	if (!*(philo->destroy) || string().cmp(msg, "died"))
-		printf("%lli %i %s\n", now, philo->id, msg);
+	if (!*(philo->destroy) || string().cmp(msg, "died 💀"))
+		printf("%06lli %i %s\n", now, philo->id, msg);
 	pthread_mutex_unlock(philo->print);
 }
 
@@ -44,7 +44,7 @@ long long	ft_get_time(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (time.tv_usec);
+	return ((time.tv_sec * (long long)1000) + (time.tv_usec / 1000));
 }
 
 void	ft_check_philos(t_info *info)
@@ -59,7 +59,7 @@ void	ft_check_philos(t_info *info)
 			if (info->philos[i].end_t <= (ft_get_time() - info->start_t))
 			{
 				info->destroy = 1;
-				ft_print(&info->philos[i], "died");
+				ft_print(&info->philos[i], "died 💀");
 				break ;
 			}
 		}
