@@ -61,10 +61,10 @@ char	**ft_split(const char *str, char *div)
 	return (arr);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int	number;
-	int	sign;
+	long long	number;
+	long long	sign;
 
 	sign = 1;
 	number = 0;

@@ -36,9 +36,9 @@ void	ft_eat(t_philo *philo)
 			{
 				philo->fork_checker[philo->right] = ++i;
 				pthread_mutex_lock(&philo->forks[philo->right]);
-				ft_print(philo, "has a fork 🍴");
-				ft_print(philo, "has a fork 🍴");
-				ft_print(philo, "is eating 🍝");
+				ft_print(philo, "has taken a fork");
+				ft_print(philo, "has taken a fork");
+				ft_print(philo, "is eating");
 				philo->end_t += philo->die_t;
 				ft_sleep(philo, (long long)philo->eat_t);
 				pthread_mutex_unlock(&philo->forks[philo->right]);

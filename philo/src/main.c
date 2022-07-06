@@ -12,6 +12,12 @@
 
 #include <ft_philo.h>
 
+int	ft_error(char *msg)
+{
+	write(2, msg, string().len(msg));
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
@@ -19,9 +25,9 @@ int	main(int argc, char **argv)
 
 	info.mem = list().new(NULL);
 	if (ft_get_args(argc, argv, args))
-		return (printf("err: invalid arguments\n"));
+		return (ft_error("err: invalid arguments\n"));
 	if (ft_threads_init(&info, args))
-		return (printf("err: problem initiating threads\n"));
+		return (ft_error("err: problem initiating threads\n"));
 	list().free(info.mem);
 	return (0);
 }

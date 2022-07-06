@@ -6,7 +6,7 @@
 /*   By: amaria-m <amaria-m@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 19:53:41 by amaria-m          #+#    #+#             */
-/*   Updated: 2022/07/01 18:31:55 by amaria-m         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:11:07 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@
 
 typedef struct s_string
 {
-	int		(*len)(const char *str);
-	char	*(*cpy)(const char *str);
-	char	*(*cpy_n)(const char *str, int n);
-	char	*(*strnstr)(const char *haystack, const char *needle, size_t len);
-	int		(*contains)(const char *str, const char *hey);
-	int		(*cmp)(const char *str1, const char *str2);
-	int		(*cmp_n)(const char *str, const char *hey, int n);
-	int		(*is_spc)(char c);
-	char	*(*join)(const char *str1, const char *str2);
-	char	*(*replace)(const char *str1, const char *str2, const char *hey);
-	char	**(*split)(char const *s, char *div);
-	int		(*atoi)(const char *str);
-	char	*(*trim)(const char *str);
-	char	*(*substr)(char const *s, unsigned int start, size_t len);
-	char	*(*iter)(const char *str, char (*f)(char c));
-	int		(*is_num)(const char *str);
-}			t_string;
+	int			(*len)(const char *str);
+	char		*(*cpy)(const char *str);
+	char		*(*cpy_n)(const char *str, int n);
+	char		*(*strnstr)(const char *haystack, const char *needle, \
+	size_t len);
+	int			(*contains)(const char *str, const char *hey);
+	int			(*cmp)(const char *str1, const char *str2);
+	int			(*cmp_n)(const char *str, const char *hey, int n);
+	int			(*is_spc)(char c);
+	char		*(*join)(const char *str1, const char *str2);
+	char		*(*replace)(const char *str1, const char *str2, \
+	const char *hey);
+	char		**(*split)(char const *s, char *div);
+	long long	(*atoi)(const char *str);
+	char		*(*trim)(const char *str);
+	char		*(*substr)(char const *s, unsigned int start, size_t len);
+	char		*(*iter)(const char *str, char (*f)(char c));
+	int			(*is_num)(const char *str);
+}				t_string;
 
 t_string	string(void);
 

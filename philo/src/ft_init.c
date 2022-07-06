@@ -34,6 +34,10 @@ int	ft_get_args(int argc, char **argv, int *args)
 			return (1);
 		if (!string().is_num(argv[i]))
 			return (1);
+		if (string().atoi(argv[i]) < -2147483648)
+			return (1);
+		if (string().atoi(argv[i]) > 2147483647)
+			return (1);
 		args[i - 1] = string().atoi(argv[i]);
 	}
 	if (argc == 5)
